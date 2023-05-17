@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DCB28CB32A14E4FB0043B01E /* ChadGPTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28CB22A14E4FB0043B01E /* ChadGPTApp.swift */; };
+		DCB28CB52A14E4FB0043B01E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28CB42A14E4FB0043B01E /* ContentView.swift */; };
+		DCB28CB72A14E4FD0043B01E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCB28CB62A14E4FD0043B01E /* Assets.xcassets */; };
+		DCB28CBA2A14E4FD0043B01E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCB28CB92A14E4FD0043B01E /* Preview Assets.xcassets */; };
+		DCB28CC42A14E4FD0043B01E /* ChadGPTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28CC32A14E4FD0043B01E /* ChadGPTTests.swift */; };
+		DCB28CCE2A14E4FD0043B01E /* ChadGPTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28CCD2A14E4FD0043B01E /* ChadGPTUITests.swift */; };
+		DCB28CD02A14E4FD0043B01E /* ChadGPTUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28CCF2A14E4FD0043B01E /* ChadGPTUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DCB28CC02A14E4FD0043B01E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCB28CA72A14E4FB0043B01E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCB28CAE2A14E4FB0043B01E;
+			remoteInfo = ChadGPT;
+		};
+		DCB28CCA2A14E4FD0043B01E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCB28CA72A14E4FB0043B01E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCB28CAE2A14E4FB0043B01E;
+			remoteInfo = ChadGPT;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DCB28CAF2A14E4FB0043B01E /* ChadGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChadGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCB28CB22A14E4FB0043B01E /* ChadGPTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChadGPTApp.swift; sourceTree = "<group>"; };
+		DCB28CB42A14E4FB0043B01E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DCB28CB62A14E4FD0043B01E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DCB28CB92A14E4FD0043B01E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DCB28CBF2A14E4FD0043B01E /* ChadGPTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChadGPTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCB28CC32A14E4FD0043B01E /* ChadGPTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChadGPTTests.swift; sourceTree = "<group>"; };
+		DCB28CC92A14E4FD0043B01E /* ChadGPTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChadGPTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCB28CCD2A14E4FD0043B01E /* ChadGPTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChadGPTUITests.swift; sourceTree = "<group>"; };
+		DCB28CCF2A14E4FD0043B01E /* ChadGPTUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChadGPTUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DCB28CAC2A14E4FB0043B01E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCB28CBC2A14E4FD0043B01E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCB28CC62A14E4FD0043B01E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DCB28CA62A14E4FB0043B01E = {
+			isa = PBXGroup;
+			children = (
+				DCB28CB12A14E4FB0043B01E /* ChadGPT */,
+				DCB28CC22A14E4FD0043B01E /* ChadGPTTests */,
+				DCB28CCC2A14E4FD0043B01E /* ChadGPTUITests */,
+				DCB28CB02A14E4FB0043B01E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DCB28CB02A14E4FB0043B01E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DCB28CAF2A14E4FB0043B01E /* ChadGPT.app */,
+				DCB28CBF2A14E4FD0043B01E /* ChadGPTTests.xctest */,
+				DCB28CC92A14E4FD0043B01E /* ChadGPTUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DCB28CB12A14E4FB0043B01E /* ChadGPT */ = {
+			isa = PBXGroup;
+			children = (
+				DCB28CB22A14E4FB0043B01E /* ChadGPTApp.swift */,
+				DCB28CB42A14E4FB0043B01E /* ContentView.swift */,
+				DCB28CB62A14E4FD0043B01E /* Assets.xcassets */,
+				DCB28CB82A14E4FD0043B01E /* Preview Content */,
+			);
+			path = ChadGPT;
+			sourceTree = "<group>";
+		};
+		DCB28CB82A14E4FD0043B01E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DCB28CB92A14E4FD0043B01E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DCB28CC22A14E4FD0043B01E /* ChadGPTTests */ = {
+			isa = PBXGroup;
+			children = (
+				DCB28CC32A14E4FD0043B01E /* ChadGPTTests.swift */,
+			);
+			path = ChadGPTTests;
+			sourceTree = "<group>";
+		};
+		DCB28CCC2A14E4FD0043B01E /* ChadGPTUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DCB28CCD2A14E4FD0043B01E /* ChadGPTUITests.swift */,
+				DCB28CCF2A14E4FD0043B01E /* ChadGPTUITestsLaunchTests.swift */,
+			);
+			path = ChadGPTUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DCB28CAE2A14E4FB0043B01E /* ChadGPT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCB28CD32A14E4FD0043B01E /* Build configuration list for PBXNativeTarget "ChadGPT" */;
+			buildPhases = (
+				DCB28CAB2A14E4FB0043B01E /* Sources */,
+				DCB28CAC2A14E4FB0043B01E /* Frameworks */,
+				DCB28CAD2A14E4FB0043B01E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChadGPT;
+			productName = ChadGPT;
+			productReference = DCB28CAF2A14E4FB0043B01E /* ChadGPT.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DCB28CBE2A14E4FD0043B01E /* ChadGPTTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCB28CD62A14E4FD0043B01E /* Build configuration list for PBXNativeTarget "ChadGPTTests" */;
+			buildPhases = (
+				DCB28CBB2A14E4FD0043B01E /* Sources */,
+				DCB28CBC2A14E4FD0043B01E /* Frameworks */,
+				DCB28CBD2A14E4FD0043B01E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DCB28CC12A14E4FD0043B01E /* PBXTargetDependency */,
+			);
+			name = ChadGPTTests;
+			productName = ChadGPTTests;
+			productReference = DCB28CBF2A14E4FD0043B01E /* ChadGPTTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DCB28CC82A14E4FD0043B01E /* ChadGPTUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCB28CD92A14E4FD0043B01E /* Build configuration list for PBXNativeTarget "ChadGPTUITests" */;
+			buildPhases = (
+				DCB28CC52A14E4FD0043B01E /* Sources */,
+				DCB28CC62A14E4FD0043B01E /* Frameworks */,
+				DCB28CC72A14E4FD0043B01E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DCB28CCB2A14E4FD0043B01E /* PBXTargetDependency */,
+			);
+			name = ChadGPTUITests;
+			productName = ChadGPTUITests;
+			productReference = DCB28CC92A14E4FD0043B01E /* ChadGPTUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DCB28CA72A14E4FB0043B01E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					DCB28CAE2A14E4FB0043B01E = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					DCB28CBE2A14E4FD0043B01E = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = DCB28CAE2A14E4FB0043B01E;
+					};
+					DCB28CC82A14E4FD0043B01E = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = DCB28CAE2A14E4FB0043B01E;
+					};
+				};
+			};
+			buildConfigurationList = DCB28CAA2A14E4FB0043B01E /* Build configuration list for PBXProject "ChadGPT" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DCB28CA62A14E4FB0043B01E;
+			productRefGroup = DCB28CB02A14E4FB0043B01E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DCB28CAE2A14E4FB0043B01E /* ChadGPT */,
+				DCB28CBE2A14E4FD0043B01E /* ChadGPTTests */,
+				DCB28CC82A14E4FD0043B01E /* ChadGPTUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DCB28CAD2A14E4FB0043B01E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCB28CBA2A14E4FD0043B01E /* Preview Assets.xcassets in Resources */,
+				DCB28CB72A14E4FD0043B01E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCB28CBD2A14E4FD0043B01E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCB28CC72A14E4FD0043B01E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DCB28CAB2A14E4FB0043B01E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCB28CB52A14E4FB0043B01E /* ContentView.swift in Sources */,
+				DCB28CB32A14E4FB0043B01E /* ChadGPTApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCB28CBB2A14E4FD0043B01E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCB28CC42A14E4FD0043B01E /* ChadGPTTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCB28CC52A14E4FD0043B01E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCB28CD02A14E4FD0043B01E /* ChadGPTUITestsLaunchTests.swift in Sources */,
+				DCB28CCE2A14E4FD0043B01E /* ChadGPTUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DCB28CC12A14E4FD0043B01E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCB28CAE2A14E4FB0043B01E /* ChadGPT */;
+			targetProxy = DCB28CC02A14E4FD0043B01E /* PBXContainerItemProxy */;
+		};
+		DCB28CCB2A14E4FD0043B01E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCB28CAE2A14E4FB0043B01E /* ChadGPT */;
+			targetProxy = DCB28CCA2A14E4FD0043B01E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DCB28CD12A14E4FD0043B01E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DCB28CD22A14E4FD0043B01E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DCB28CD42A14E4FD0043B01E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ChadGPT/Preview Content\"";
+				DEVELOPMENT_TEAM = S2D94HHFAY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.schindlerfelix.ChadGPT;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DCB28CD52A14E4FD0043B01E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ChadGPT/Preview Content\"";
+				DEVELOPMENT_TEAM = S2D94HHFAY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.schindlerfelix.ChadGPT;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DCB28CD72A14E4FD0043B01E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S2D94HHFAY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.schindlerfelix.ChadGPTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChadGPT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ChadGPT";
+			};
+			name = Debug;
+		};
+		DCB28CD82A14E4FD0043B01E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S2D94HHFAY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.schindlerfelix.ChadGPTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChadGPT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ChadGPT";
+			};
+			name = Release;
+		};
+		DCB28CDA2A14E4FD0043B01E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S2D94HHFAY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.schindlerfelix.ChadGPTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ChadGPT;
+			};
+			name = Debug;
+		};
+		DCB28CDB2A14E4FD0043B01E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S2D94HHFAY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.schindlerfelix.ChadGPTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ChadGPT;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DCB28CAA2A14E4FB0043B01E /* Build configuration list for PBXProject "ChadGPT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCB28CD12A14E4FD0043B01E /* Debug */,
+				DCB28CD22A14E4FD0043B01E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCB28CD32A14E4FD0043B01E /* Build configuration list for PBXNativeTarget "ChadGPT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCB28CD42A14E4FD0043B01E /* Debug */,
+				DCB28CD52A14E4FD0043B01E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCB28CD62A14E4FD0043B01E /* Build configuration list for PBXNativeTarget "ChadGPTTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCB28CD72A14E4FD0043B01E /* Debug */,
+				DCB28CD82A14E4FD0043B01E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCB28CD92A14E4FD0043B01E /* Build configuration list for PBXNativeTarget "ChadGPTUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCB28CDA2A14E4FD0043B01E /* Debug */,
+				DCB28CDB2A14E4FD0043B01E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DCB28CA72A14E4FB0043B01E /* Project object */;
+}
