@@ -1,0 +1,60 @@
+//
+//  ContentView.swift
+//  ChadGPT
+//
+//  Created by Felix Schindler on 17.05.23.
+//
+
+import SwiftUI
+
+struct GeneratorView: View {
+    /// User input
+    @State var userInput = ""
+    /// Pick up lines
+    @State var lines: [String]? = []
+    
+    var body: some View {
+        NavigationView {
+            List {
+                Section {
+                    TextField("She's a 10 but...", text: $userInput)
+                    Button("Generate") {
+                        lines = nil
+                        // TODO: Add API call
+                        lines = [
+                            "Excuse me, are you a dictionary? Because you add meaning to my otherwise dumm life.",
+                            "Are you a math equation? Because you're the missing variable in my dumm love life."
+                        ]
+                    }
+                }
+                
+                Section("Pick up lines") {
+                    if (lines != nil) {
+                        if (lines!.isEmpty) {
+                            Text("Dir kann nicht mehr geholfen werden!")
+                        } else {
+                            ForEach(lines!, id: \.self) { line in
+                                Text(line)
+                                    .swipeActions {
+                                        Button(action: {
+                                            // TODO: Add to starred
+                                        }, label: {
+                                            Label("Add to starred", systemImage: "star")
+                                        }).tint(.yellow)
+                                    }
+                            }
+                        }
+                    } else {
+                        ProgressView()
+                    }
+                }
+            }.navigationTitle("Generator")
+        }
+    }
+}
+
+struct Generator_Previews: PreviewProvider {
+    static var previews: some View {
+        GeneratorView()
+    }
+}

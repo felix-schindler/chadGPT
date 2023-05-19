@@ -11,7 +11,20 @@ import SwiftUI
 struct ChadGPTApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                GeneratorView()
+                    .tabItem {
+                        Label("Generator", systemImage: "lightbulb")
+                    }.tag(0)
+                ChatView()
+                    .tabItem {
+                        Label("Chat", systemImage: "bubble.left.and.bubble.right")
+                    }.tag(1)
+                StarredView()
+                    .tabItem {
+                        Label("Starred", systemImage: "star")
+                    }.tag(2)
+            }
         }
     }
 }
