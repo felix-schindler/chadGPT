@@ -12,7 +12,7 @@ class ChadModel {
     let baseURL = URL(string: "https://api.openai.com/v1/chat/completions")!
     
     
-    func makeAPIRequest(prompt: String, completionHandler: @escaping (Result<String, Error>) -> Void) {
+    func makeAPIRequest(systemMessage : String, prompt: String, completionHandler: @escaping (Result<String, Error>) -> Void) {
         guard let requestURL = URL(string: "\(baseURL)") else {
             completionHandler(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
@@ -26,7 +26,7 @@ class ChadModel {
         let parameters: [String: Any] = [
             "model": "gpt-3.5-turbo",
             "messages": [
-                ["role": "system", "content": "You are your friend's wingman. You help your friend come up with pick-up lines. You only answer with pick-up lines."],
+                ["role": "system", "content": systemMessage],
                 ["role": "user", "content": prompt]
             ]
         ]
@@ -61,7 +61,10 @@ class ChadModel {
             
             do {
                 let responseJSON = try JSONSerialization.jsonObject(with: data, options: [])
-                if let responseDict = responseJSON as? [String: Any], let choices = responseDict["choices"] as? [[String: Any]], let completion = choices.first?["message"] as? [String: Any], let content = completion["content"] as? String {
+                if let responseDict = responseJSON as? [String: Any],
+                   let choices = responseDict["choices"] as? [[String: Any]],
+                   let completion = choices.first?["message"] as? [String: Any],
+                   let content = completion["content"] as? String {
                     completionHandler(.success(content))
                 } else {
                     completionHandler(.failure(NSError(domain: "Invalid response format", code: 0, userInfo: nil)))
