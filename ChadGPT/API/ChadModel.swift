@@ -8,17 +8,9 @@
 import Foundation
 
 class ChadModel {
-    
+    let ApiKey = "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"
     let baseURL = URL(string: "https://api.openai.com/v1/chat/completions")!
     
-    func getApiKey() -> String {
-        if let apiKey = ProcessInfo.processInfo.environment["API_KEY"] {
-            return apiKey
-        } else {
-            print("could not find key")
-            return ""
-        }
-    }
     
     func makeAPIRequest(prompt: String, completionHandler: @escaping (Result<String, Error>) -> Void) {
         guard let requestURL = URL(string: "\(baseURL)") else {
@@ -27,9 +19,8 @@ class ChadModel {
         }
         
         var request = URLRequest(url: requestURL)
-        let apiKey = getApiKey()
         request.httpMethod = "POST"
-        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(ApiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let parameters: [String: Any] = [
