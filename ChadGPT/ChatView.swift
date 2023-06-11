@@ -7,36 +7,9 @@
 
 import SwiftUI
 
-enum Sender {
-    case bot,
-         human
-}
-
-struct Message: Hashable {
-    let sender: Sender
-    let content: String
-    
-    func hash(into hasher: inout Hasher) {
-        return self.content.hash(into: &hasher)
-    }
-}
-
 struct ChatView: View {
     @State var name = "Cardi B"
-    @State var messages: [Message] = [
-        Message(sender: .human, content: "Hi"),
-        Message(sender: .bot, content: "Hello, yourself."),
-        Message(sender: .human, content: "Thank you"),
-        Message(sender: .bot, content: "No problem"),
-        Message(sender: .human, content: "Write a longer text"),
-        Message(sender: .bot, content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."),
-        Message(sender: .human, content: "F"),
-        Message(sender: .bot, content: "F"),
-        Message(sender: .human, content: "F"),
-        Message(sender: .bot, content: "F"),
-        Message(sender: .human, content: "F"),
-        Message(sender: .bot, content: "F"),
-    ]
+    @State var messages: [Message] = [] // TODO: Load old messages / history (?)
     
     @State var msg = ""
     
@@ -46,7 +19,13 @@ struct ChatView: View {
         NavigationView {
             VStack {
                 ScrollView {
-                    MessageListView(messages: $messages)
+                    if (messages.isEmpty) {
+                        Spacer()
+                        Label("As soon as you write messages, they will appear here", systemImage: "bubble.left.and.exclamationmark.bubble.right")
+                        Spacer()
+                    } else {
+                        MessageListView(messages: $messages)
+                    }
                 }
                 Spacer()
                 HStack {
@@ -56,8 +35,17 @@ struct ChatView: View {
                     Button(action: {
                         if (!msg.isEmpty) {
                             // TODO: Send message
-                            messages.append(Message(sender: .human, content: msg))
-                            msg = ""
+                            Task {
+                                do {
+                                    let msg = self.msg; self.msg = ""
+                                    self.messages.append(Message(role: "user", content: msg))
+                                    let res  = try await ChadModel.shared.makeAPIRequest(systemMessage: ChadModel.CUTE, prompt: msg)
+                                    let msgs = res.choices.map { $0.message }
+                                    let _    = msgs.map { self.messages.append($0) }
+                                } catch {
+                                    print("[ERROR] Failed to send message", error)
+                                }
+                            }
                         }
                     }, label: {
                         Label("Send", systemImage: "paperplane")
@@ -77,6 +65,19 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatView(messages: [
+            Message(role: "user", content: "Hi"),
+            Message(role: "assistant", content: "Hello, yourself."),
+            Message(role: "user", content: "Thank you"),
+            Message(role: "assistant", content: "No problem"),
+            Message(role: "user", content: "Write a longer text"),
+            Message(role: "assistant", content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."),
+            Message(role: "user", content: "F"),
+            Message(role: "assistant", content: "F"),
+            Message(role: "user", content: "F"),
+            Message(role: "assistant", content: "F"),
+            Message(role: "user", content: "F"),
+            Message(role: "assistant", content: "F"),
+        ])
     }
 }
