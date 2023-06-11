@@ -11,9 +11,9 @@ struct MessageListView: View {
     @Binding var messages: [Message]
     
     var body: some View {
-        ForEach(messages, id: \.self) { msg in
+        ForEach(messages, id: \.content) { msg in
             HStack {
-                if (msg.sender == .human) {
+                if (msg.role == "user") {
                     Spacer()
                     Text(msg.content)
                         .padding(5)
@@ -38,12 +38,12 @@ struct MessageListView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             MessageListView(messages: .constant([
-                Message(sender: .human, content: "Hi"),
-                Message(sender: .bot, content: "Hello, yourself."),
-                Message(sender: .human, content: "Thank you"),
-                Message(sender: .bot, content: "No problem"),
-                Message(sender: .human, content: "Write a longer text"),
-                Message(sender: .bot, content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."),
+                Message(role: "user", content: "Hi"),
+                Message(role: "user", content: "Hello, yourself."),
+                Message(role: "user", content: "Thank you"),
+                Message(role: "user", content: "No problem"),
+                Message(role: "user", content: "Write a longer text"),
+                Message(role: "user", content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."),
             ]))
         }.padding()
     }
