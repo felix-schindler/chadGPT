@@ -26,7 +26,11 @@ struct ChatView: View {
                         .scaledToFit()
                         .foregroundStyle(.secondary)
                         .frame(width: 50, height: 50)
-                    Text("As soon as you write messages, they will appear here")
+                    Text("No messages")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    Text("Messages will appear when you start texting")
+                        .foregroundStyle(.secondary)
                 } else {
                     ScrollViewReader { scrollView in
                         ScrollView {
