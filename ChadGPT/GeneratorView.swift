@@ -15,6 +15,8 @@ struct GeneratorView: View {
     /// Whether there are lines being generated right now
     @State var loading = false
     
+    @ObservedObject var dataManager = DataManager.shared
+    
     var body: some View {
         NavigationView {
             List {
@@ -41,7 +43,7 @@ struct GeneratorView: View {
                             Text(line)
                                 .swipeActions {
                                     Button(action: {
-                                        // TODO: Add to starred
+                                        dataManager.savePickUpLine(line: line)
                                     }, label: {
                                         Label("Add to starred", systemImage: "star")
                                     }).tint(.yellow)
@@ -58,7 +60,6 @@ struct GeneratorView: View {
             let res = try await ChadModel.shared.makeAPIRequest(self.userInput, systemMessage: ChadStyle.flirty.rawValue)
                lines = res.choices.map { $0.message.content }
            } catch {
-               // Handle API call error
                print("API call error: \(error)")
            }
     }
