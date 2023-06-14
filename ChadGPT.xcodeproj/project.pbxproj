@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		4526866D2A35F17E00848F59 /* ChatData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4526866B2A35F17E00848F59 /* ChatData.xcdatamodeld */; };
 		4526866F2A35F21500848F59 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4526866E2A35F21500848F59 /* DataManager.swift */; };
-		DC32A0B62A1500C500F8668D /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32A0B52A1500C500F8668D /* MessageListView.swift */; };
 		DC32A0B82A15010400F8668D /* ChatSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32A0B72A15010400F8668D /* ChatSettingsView.swift */; };
 		DC3E09F42A1E1BA000FC3D46 /* ChadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E09F32A1E1BA000FC3D46 /* ChadModel.swift */; };
 		DC437FC12A14F05C00108D4A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC437FC02A14F05C00108D4A /* ChatView.swift */; };
 		DC437FC32A14F06900108D4A /* StarredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC437FC22A14F06900108D4A /* StarredView.swift */; };
+		DC7949732A39F0ED002CB740 /* ChadModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7949722A39F0ED002CB740 /* ChadModelTests.swift */; };
+		DC7949752A39F2B5002CB740 /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7949742A39F2B5002CB740 /* DataManagerTests.swift */; };
 		DC8B1D042A39AFA9008C9006 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B1D032A39AFA9008C9006 /* MessageView.swift */; };
 		DCB28CB32A14E4FB0043B01E /* ChadGPTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28CB22A14E4FB0043B01E /* ChadGPTApp.swift */; };
 		DCB28CB52A14E4FB0043B01E /* GeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28CB42A14E4FB0043B01E /* GeneratorView.swift */; };
@@ -44,11 +45,12 @@
 /* Begin PBXFileReference section */
 		4526866C2A35F17E00848F59 /* ChatData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChatData.xcdatamodel; sourceTree = "<group>"; };
 		4526866E2A35F21500848F59 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		DC32A0B52A1500C500F8668D /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 		DC32A0B72A15010400F8668D /* ChatSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSettingsView.swift; sourceTree = "<group>"; };
 		DC3E09F32A1E1BA000FC3D46 /* ChadModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChadModel.swift; path = ChadGPT/API/ChadModel.swift; sourceTree = SOURCE_ROOT; };
 		DC437FC02A14F05C00108D4A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		DC437FC22A14F06900108D4A /* StarredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredView.swift; sourceTree = "<group>"; };
+		DC7949722A39F0ED002CB740 /* ChadModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChadModelTests.swift; sourceTree = "<group>"; };
+		DC7949742A39F2B5002CB740 /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
 		DC8B1D032A39AFA9008C9006 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		DCB28CAF2A14E4FB0043B01E /* ChadGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChadGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB28CB22A14E4FB0043B01E /* ChadGPTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChadGPTApp.swift; sourceTree = "<group>"; };
@@ -161,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				DCB28CC32A14E4FD0043B01E /* ChadGPTTests.swift */,
+				DC7949722A39F0ED002CB740 /* ChadModelTests.swift */,
+				DC7949742A39F2B5002CB740 /* DataManagerTests.swift */,
 			);
 			path = ChadGPTTests;
 			sourceTree = "<group>";
@@ -321,6 +325,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCB28CC42A14E4FD0043B01E /* ChadGPTTests.swift in Sources */,
+				DC7949752A39F2B5002CB740 /* DataManagerTests.swift in Sources */,
+				DC7949732A39F0ED002CB740 /* ChadModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
