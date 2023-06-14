@@ -13,6 +13,8 @@ struct GeneratorView: View {
     /// Pick up lines
     @State var lines: [String]? = []
     
+    @ObservedObject var dataManager = DataManager.shared
+    
     var body: some View {
         NavigationView {
             List {
@@ -40,7 +42,7 @@ struct GeneratorView: View {
                                 Text(line)
                                     .swipeActions {
                                         Button(action: {
-                                            // TODO: Add to starred
+                                            dataManager.savePickUpLine(line: line)
                                         }, label: {
                                             Label("Add to starred", systemImage: "star")
                                         }).tint(.yellow)

@@ -66,4 +66,21 @@ class DataManager: ObservableObject {
         
         return []
     }
+    
+    func savePickUpLine(line: String) {
+        print("Saving pickup line: \(line)")
+        let newPickUpLine = PickupLines(context: viewContext)
+        newPickUpLine.content = line
+        
+        do {
+            try viewContext.save()
+            print("Pickup line saved")
+        } catch {
+            print("Failed to save pickup line: \(error)")
+        }
+    }
+    
+    func loadPickUpLines() -> [PickupLines] {
+        return []
+    }
 }
