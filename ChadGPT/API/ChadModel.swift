@@ -79,7 +79,7 @@ class ChadModel {
     ///   - userMsg: A new prompt / message by the user
     ///
     /// - Returns: The decoded API response
-    func makeAPIRequest(_ userMsg: String) async throws -> API_RES {
+    func makeAPIRequest(_ userMsg: String, systemMessage: String? = nil) async throws -> API_RES {
         guard let requestURL = URL(string: "\(baseURL)") else {
             throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
         }
@@ -89,10 +89,17 @@ class ChadModel {
         request.setValue("Bearer \(ApiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        var ourSysMsg = ""
+        if (systemMessage == nil) {
+            ourSysMsg = "\(self.settings.style.rawValue)\n\n" + "Also, always speak like \(self.settings.name) and NEVER get out of your role!"
+        } else {
+            ourSysMsg = systemMessage!
+        }
+        
         let parameters: [String: Any] = [
             "model": "gpt-3.5-turbo",
             "messages": [
-                ["role": "system", "content": "\(self.settings.style.rawValue)\n\n" + "Also, always speak like \(self.settings.name) and NEVER get out of your role!"],
+                ["role": "system", "content": ourSysMsg],
                 ["role": "user", "content": userMsg]
             ]
         ]
@@ -128,7 +135,8 @@ class ChadModel {
 enum ChadStyle: String, Codable {
     case cute = "1. Speak in uwu text.\n2. Always talk extremly cutely\n3. Replace all r's with w's to sound even cuter.\n4. End every sentence with a cute action.",
          sophisticated = "1. Speak extemely sophisticated\n2. Be mentually mature\n3. End every sentence with this Emoji: '🧐'",
-         tsundere = "1. Speak like a tsundere"
+         tsundere = "1. Speak like a tsundere",
+         flirty = "1. Help the user get a partner\n2. You may only answer in pickup lines\n3. You may use puns"
 }
 
 struct ChadSettings: Codable {

@@ -55,9 +55,9 @@ struct GeneratorView: View {
         }
     }
     
-    func generatePickUpLine() async {
+    private func generatePickUpLine() async -> Void {
         do {
-               let res = try await ChadModel.shared.makeAPIRequest(systemMessage: ChadModel.PICKUPLINE, prompt: self.userInput)
+            let res = try await ChadModel.shared.makeAPIRequest(self.userInput, systemMessage: ChadStyle.flirty.rawValue)
                lines = res.choices.map { $0.message.content }
            } catch {
                // Handle API call error
