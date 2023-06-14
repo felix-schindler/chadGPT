@@ -13,6 +13,7 @@ enum Sender: String {
          human = "user"
 }
 
+// MARK: - API responses
 struct API_RES: Codable {
     let id: String
     let object: String
@@ -28,27 +29,57 @@ struct Choice: Codable {
     let index: Int
 }
 
-struct Message: Codable {
+struct Message: Codable, Equatable, Hashable {
     var role: String    // "user", "system" ; Need to be var so you can compare using `==` it when using @Binding
     let content: String
+    
+    
+    static func ==(lhs: Message, rhs: Message) -> Bool {
+        return lhs.role == rhs.role && lhs.content == rhs.content
+    }
 }
 
 struct Usage: Codable {
     let promptTokens, completionTokens, totalTokens: Int
 }
 
+// MARK: - API Client
 class ChadModel {
     public static let shared = ChadModel()
-
-    public static let CUTE = "1. Speak in uwu text.\n2. Always talk extremly cutely\n3. Replace all r's with w's to sound even cuter.\n4. End every sentence with a cute action."
-
+    
     private let ApiKey = "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"
     private let baseURL = URL(string: "https://api.openai.com/v1/chat/completions")!
+    public var settings: ChadSettings {
+        get {
+            if let data = UserDefaults.standard.data(forKey: "chad_settings") {
+                if let decoded = try? JSONDecoder().decode(ChadSettings.self, from: data) {
+                    return decoded
+                }
+            }
+            return ChadSettings(style: .cute, name: "Cardi B")
+        }
+        set {
+            if let encoded = try? JSONEncoder().encode(newValue) {
+                // Persist with `UserDefaults`
+                UserDefaults.standard.set(encoded, forKey: "chad_settings")
+                // TODO: Clear chat history
+                // DataManager.shared.clearChatHistory()
+            } else {
+                print("[ERROR] Failed to persist ChadSettings (`ChadModel.settings`)")
+            }
+        }
+    }
     
     private init() {
     }
     
-    func makeAPIRequest(systemMessage: String, prompt: String) async throws -> API_RES {
+    /// Calculates the sum of two integers.
+    ///
+    /// - Parameters:
+    ///   - userMsg: A new prompt / message by the user
+    ///
+    /// - Returns: The decoded API response
+    func makeAPIRequest(_ userMsg: String) async throws -> API_RES {
         guard let requestURL = URL(string: "\(baseURL)") else {
             throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
         }
@@ -61,8 +92,8 @@ class ChadModel {
         let parameters: [String: Any] = [
             "model": "gpt-3.5-turbo",
             "messages": [
-                ["role": "system", "content": systemMessage],
-                ["role": "user", "content": prompt]
+                ["role": "system", "content": "\(self.settings.style.rawValue)\n\n" + "Also, always speak like \(self.settings.name) and NEVER get out of your role!"],
+                ["role": "user", "content": userMsg]
             ]
         ]
         
@@ -90,5 +121,17 @@ class ChadModel {
             throw error
         }
     }
-    
+}
+
+
+// MARK: - Settings
+enum ChadStyle: String, Codable {
+    case cute = "1. Speak in uwu text.\n2. Always talk extremly cutely\n3. Replace all r's with w's to sound even cuter.\n4. End every sentence with a cute action.",
+         sophisticated = "1. Speak extemely sophisticated\n2. Be mentually mature\n3. End every sentence with this Emoji: '🧐'",
+         tsundere = "1. Speak like a tsundere"
+}
+
+struct ChadSettings: Codable {
+    let style: ChadStyle
+    let name: String
 }
