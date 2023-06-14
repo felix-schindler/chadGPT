@@ -50,14 +50,13 @@ struct ChatView: View {
                             withAnimation {
                                 scrollView.scrollTo(messages.count - 1, anchor: .bottom)
                             }
-                        }.scrollDismissesKeyboard(.immediately)
+                        }.scrollDismissesKeyboard(.interactively)
                     }
                 }
                 Spacer()
                 HStack {
                     TextField("Message", text: $msg)
                         .textFieldStyle(.roundedBorder)
-                        .scrollDismissesKeyboard(.immediately)
                     if (loading) {
                         Spacer()
                         ProgressView()
@@ -95,7 +94,9 @@ struct ChatView: View {
                     Label("Settings", systemImage: "gearshape")
                 })
             }.sheet(isPresented: $showSettings) {
-                ChatSettingsView()
+                ChatSettingsView(name: $name)
+            }.onAppear {
+                self.name = ChadModel.shared.settings.name
             }
             .padding(.horizontal)
             .navigationTitle("Chat with \(name)")

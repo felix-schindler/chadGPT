@@ -11,7 +11,7 @@ struct ChatSettingsView: View {
     @Environment(\.presentationMode)
     private var presentationMode: Binding<PresentationMode>
     
-    @State var name: String = ChadModel.shared.settings.name
+    @Binding var name: String
     @State var personality: ChadStyle = ChadModel.shared.settings.style
     
     /// Dismiss (close) this view
@@ -58,6 +58,6 @@ struct ChatSettingsView: View {
 
 struct ChatSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatSettingsView(name: "Cardi B", personality: .cute)
+        ChatSettingsView(name: .constant("Cardi B"), personality: .cute)
     }
 }
