@@ -51,7 +51,9 @@ struct ChatView: View {
                     TextField("Message", text: $msg)
                         .textFieldStyle(.roundedBorder)
                     if (loading) {
+                        Spacer()
                         ProgressView()
+                            .controlSize(.small)
                     } else {
                         Button(action: {
                             if (!msg.isEmpty) {
@@ -73,8 +75,10 @@ struct ChatView: View {
                             Label("Send", systemImage: "paperplane")
                                 .labelStyle(.iconOnly)
                         })
+                        .buttonStyle(.bordered)
+                        .clipShape(Circle())
                     }
-                }.padding(.bottom, 3)
+                }.padding(.bottom, 5)
             }.toolbar {
                 Button(action: { showSettings = true }, label: {
                     Label("Settings", systemImage: "gearshape")

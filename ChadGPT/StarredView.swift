@@ -8,27 +8,38 @@
 import SwiftUI
 
 struct StarredView: View {
-    @State var starred: [String] = ["You're a bit smelly"]
+    // TODO: Load from persistence
+    @State var starred: [String] = []
     
     var body: some View {
         NavigationView {
-            List {
-                if (starred.isEmpty) {
-                    Text("Starred pick up lines will show up here")
-                } else {
-                    ForEach(starred, id: \.self) { line in
-                        Text(line)
-                            .swipeActions {
-                                Button(role: .destructive, action: {
-                                    // TODO: Remove from starred
-                                    starred = []
-                                }, label: {
-                                    Label("Remove starred", systemImage: "star.slash")
-                                })
-                            }
-                    }
-                }
-            }.navigationTitle("Starred")
+            if (starred.isEmpty) {
+                VStack {
+                    Image(systemName: "star.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(.secondary)
+                        .frame(width: 50, height: 50)
+                    Text("No favourites")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    Text("Swipe a pickup line to mark as favourite")
+                        .foregroundStyle(.secondary)
+                }.navigationTitle("Starred")
+                    .padding()
+            } else {
+                List(starred, id: \.self) { line in
+                    Text(line)
+                        .swipeActions {
+                            Button(role: .destructive, action: {
+                                // TODO: Remove from starred
+                                starred = []
+                            }, label: {
+                                Label("Remove starred", systemImage: "star.slash")
+                            })
+                        }
+                }.navigationTitle("Starred")
+            }
         }
     }
 }
