@@ -69,7 +69,7 @@ class DataManager: ObservableObject {
     
     func savePickUpLine(line: String) {
         print("Saving pickup line: \(line)")
-        let newPickUpLine = PickupLines(context: viewContext)
+        let newPickUpLine = PickupLine(context: viewContext)
         newPickUpLine.content = line
         
         do {
@@ -80,8 +80,8 @@ class DataManager: ObservableObject {
         }
     }
     
-    func loadPickUpLines() -> [PickupLines] {
-        let request : NSFetchRequest<PickupLines> = PickupLines.fetchRequest()
+    func loadPickUpLines() -> [PickupLine] {
+        let request : NSFetchRequest<PickupLine> = PickupLine.fetchRequest()
         do {
             let result = try viewContext.fetch(request)
             return result
@@ -89,5 +89,23 @@ class DataManager: ObservableObject {
             print("Failed to load pickuplines: \(error)")
         }
         return []
+    }
+    
+    func deleteItem(withContent content: String) {
+        let fetchRequest: NSFetchRequest<PickupLine> = PickupLine.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "content == %@", content)
+        
+        do {
+            let items = try viewContext.fetch(fetchRequest)
+            
+            for item in items {
+                viewContext.delete(item)
+                print("deleting line: \(String(describing: item.content))")
+            }
+            
+            try viewContext.save()
+        } catch {
+            print("Error deleting item: \(error)")
+        }
     }
 }

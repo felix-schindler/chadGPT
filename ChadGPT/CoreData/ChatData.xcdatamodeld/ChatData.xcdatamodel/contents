@@ -4,7 +4,7 @@
         <attribute name="message" optional="YES" attributeType="String"/>
         <attribute name="role" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="PickupLines" representedClassName="PickupLines" syncable="YES" codeGenerationType="class">
+    <entity name="PickupLine" representedClassName="PickupLine" syncable="YES" codeGenerationType="class">
         <attribute name="content" optional="YES" attributeType="String"/>
     </entity>
 </model>

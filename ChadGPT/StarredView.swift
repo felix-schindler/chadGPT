@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct StarredView: View {
-    @State var starred: [String] = ["You're a bit smelly"]
+    @State var starred: [String] = []
+    @ObservedObject var dataManager = DataManager.shared
     
     var body: some View {
         NavigationView {
@@ -20,8 +21,8 @@ struct StarredView: View {
                         Text(line)
                             .swipeActions {
                                 Button(role: .destructive, action: {
-                                    // TODO: Remove from starred
-                                    starred = []
+                                    dataManager.deleteItem(withContent: line)
+                                    reloadStarredList()
                                 }, label: {
                                     Label("Remove starred", systemImage: "star.slash")
                                 })
@@ -29,6 +30,15 @@ struct StarredView: View {
                     }
                 }
             }.navigationTitle("Starred")
+        }.onAppear {
+            reloadStarredList()
+        }
+    }
+    
+    func reloadStarredList() {
+        starred = []
+        for line in dataManager.loadPickUpLines() {
+            starred.append(line.content ?? "")
         }
     }
 }

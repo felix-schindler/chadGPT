@@ -22,7 +22,7 @@ struct GeneratorView: View {
                     TextField("She's a 10 but...", text: $userInput)
                     Button("Generate") {
                         lines = nil
-                        // TODO: Add API call
+                        
                         Task {
                             await generatePickUpLine()
                         }
@@ -62,7 +62,6 @@ struct GeneratorView: View {
             let res = try await ChadModel.shared.makeAPIRequest(self.userInput, systemMessage: ChadStyle.flirty.rawValue)
                lines = res.choices.map { $0.message.content }
            } catch {
-               // Handle API call error
                print("API call error: \(error)")
            }
     }
