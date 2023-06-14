@@ -25,7 +25,7 @@ class DataManager: ObservableObject {
         return container
     }()
     
-    private var viewContext: NSManagedObjectContext {
+    public var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
     
