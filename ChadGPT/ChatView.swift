@@ -69,13 +69,13 @@ struct ChatView: View {
                                     loading = true
                                     do {
                                         let sentMessage = Message(role: "user", content: msg)
+                                        msg = ""
                                         messages.append(sentMessage)
                                         dataManager.saveChatHistory(role: sentMessage.role, message: sentMessage.content)
-                                        let res  = try await ChadModel.shared.makeAPIRequest(msg)
+                                        let res  = try await ChadModel.shared.makeAPIRequest(sentMessage.content)
                                         let systemMessages = res.choices.map { Message(role: "system", content: $0.message.content) }
                                         messages.append(contentsOf: systemMessages)
                                         systemMessages.forEach { dataManager.saveChatHistory(role: $0.role, message: $0.content) }
-                                        msg = ""
                                     } catch {
                                         print("[ERROR] Failed to send message", error)
                                     }
@@ -86,18 +86,20 @@ struct ChatView: View {
                             Label("Send", systemImage: "paperplane")
                                 .labelStyle(.iconOnly)
                         })
+                        .buttonStyle(.bordered)
+                        .clipShape(Circle())
                     }
-                }
-            }.padding(.bottom, 3)
-        }.toolbar {
-            Button(action: { showSettings = true }, label: {
-                Label("Settings", systemImage: "gearshape")
-            })
-        }.sheet(isPresented: $showSettings) {
-            ChatSettingsView()
+                }.padding(.bottom, 5)
+            }.toolbar {
+                Button(action: { showSettings = true }, label: {
+                    Label("Settings", systemImage: "gearshape")
+                })
+            }.sheet(isPresented: $showSettings) {
+                ChatSettingsView()
+            }
+            .padding(.horizontal)
+            .navigationTitle("Chat with \(name)")
         }
-        .padding(.horizontal)
-        .navigationTitle("Chat with \(name)")
     }
 }
 

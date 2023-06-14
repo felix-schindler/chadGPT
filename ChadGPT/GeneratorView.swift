@@ -12,6 +12,8 @@ struct GeneratorView: View {
     @State var userInput = ""
     /// Pick up lines
     @State var lines: [String]? = []
+    /// Whether there are lines being generated right now
+    @State var loading = false
     
     @ObservedObject var dataManager = DataManager.shared
     
@@ -20,38 +22,34 @@ struct GeneratorView: View {
             List {
                 Section {
                     TextField("She's a 10 but...", text: $userInput)
-                    Button("Generate") {
-                        lines = nil
-                        
-                        Task {
-                            await generatePickUpLine()
-                        }
-                        /*lines = [
-                            "Excuse me, are you a dictionary? Because you add meaning to my otherwise dumm life.",
-                            "Are you a math equation? Because you're the missing variable in my dumm love life."
-                        ]*/
+                    if (loading) {
+                        ProgressView()
+                    } else {
+                        Button(action: {
+                            Task {
+                                loading = true
+                                await generatePickUpLine()
+                                loading = false
+                            }
+                        }, label: {
+                            Text("Generate")
+                        })
                     }
                 }
                 
-                Section("Pick up lines") {
-                    if (lines != nil) {
-                        if (lines!.isEmpty) {
-                            Text("Dir kann nicht mehr geholfen werden!")
-                        } else {
-                            ForEach(lines!, id: \.self) { line in
-                                Text(line)
-                                    .swipeActions {
-                                        Button(action: {
-                                            dataManager.savePickUpLine(line: line)
-                                        }, label: {
-                                            Label("Add to starred", systemImage: "star")
-                                        }).tint(.yellow)
-                                    }
-                            }
+                if (lines != nil && !(lines!.isEmpty)) {
+                    Section("Pickup lines") {
+                        ForEach(lines!, id: \.self) { line in
+                            Text(line)
+                                .swipeActions {
+                                    Button(action: {
+                                        dataManager.savePickUpLine(line: line)
+                                    }, label: {
+                                        Label("Add to starred", systemImage: "star")
+                                    }).tint(.yellow)
+                                }
                         }
-                    } else {
-                        ProgressView()
-                    }
+                    }.transition(.slide) // FIXME: This somehow doesn't works
                 }
             }.navigationTitle("Generator")
         }
