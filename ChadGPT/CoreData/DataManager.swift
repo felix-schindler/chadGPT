@@ -61,7 +61,7 @@ class DataManager: ObservableObject {
             let result = try viewContext.fetch(request)
             return result
         } catch {
-            print("Loading Person failed")
+            print("Loading Chat History failed: \(error)")
         }
         
         return []
@@ -81,6 +81,13 @@ class DataManager: ObservableObject {
     }
     
     func loadPickUpLines() -> [PickupLines] {
+        let request : NSFetchRequest<PickupLines> = PickupLines.fetchRequest()
+        do {
+            let result = try viewContext.fetch(request)
+            return result
+        } catch {
+            print("Failed to load pickuplines: \(error)")
+        }
         return []
     }
 }
