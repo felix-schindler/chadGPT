@@ -62,8 +62,8 @@ class ChadModel {
             if let encoded = try? JSONEncoder().encode(newValue) {
                 // Persist with `UserDefaults`
                 UserDefaults.standard.set(encoded, forKey: "chad_settings")
-                // Clear chat history
-                DataManager.shared.clearChatHistory()
+                // TODO: Clear chat history
+                // DataManager.shared.clearChatHistory()
             } else {
                 print("[ERROR] Failed to persist ChadSettings (`ChadModel.settings`)")
             }

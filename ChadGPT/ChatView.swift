@@ -56,7 +56,7 @@ struct ChatView: View {
                                 do {
                                     let msg = self.msg; self.msg = ""
                                     self.messages.append(Message(role: "user", content: msg))
-                                    let res  = try await ChadModel.shared.makeAPIRequest(systemMessage: ChadModel.CUTE, prompt: msg)
+                                    let res  = try await ChadModel.shared.makeAPIRequest(msg)
                                     let msgs = res.choices.map { $0.message }
                                     let _    = msgs.map { self.messages.append($0) }
                                 } catch {
@@ -71,9 +71,6 @@ struct ChatView: View {
                         })
                     }
                 }.padding(.bottom, 3)
-            }.onAppear {
-                loadChatHistory()
-                print(viewContext)
             }.toolbar {
                 Button(action: { showSettings = true }, label: {
                     Label("Settings", systemImage: "gearshape")
