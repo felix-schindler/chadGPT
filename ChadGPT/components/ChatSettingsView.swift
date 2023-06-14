@@ -14,6 +14,11 @@ struct ChatSettingsView: View {
     @State var name: String = ChadModel.shared.settings.name
     @State var personality: ChadStyle = ChadModel.shared.settings.style
     
+    /// Dismiss (close) this view
+    private func dismiss() -> Void {
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -31,8 +36,7 @@ struct ChatSettingsView: View {
             }.toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button(role: .cancel, action: {
-                        // Dismiss (close) this view
-                        self.presentationMode.wrappedValue.dismiss()
+                        self.dismiss()
                     }, label: {
                         Label("Cancel", systemImage: "xmark.app.fill")
                             .labelStyle(.titleAndIcon)
@@ -41,8 +45,9 @@ struct ChatSettingsView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: {
                         ChadModel.shared.settings = ChadSettings(style: personality, name: name)
+                        self.dismiss()
                     }, label: {
-                        Label("Save", systemImage: "checkmark.square.fill")
+                        Label("Save", systemImage: "checkmark.circle")
                             .labelStyle(.titleAndIcon)
                     })
                 }
