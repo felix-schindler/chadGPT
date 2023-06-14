@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4526866D2A35F17E00848F59 /* ChatData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4526866B2A35F17E00848F59 /* ChatData.xcdatamodeld */; };
+		4526866F2A35F21500848F59 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4526866E2A35F21500848F59 /* DataManager.swift */; };
+		DC32A0B62A1500C500F8668D /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32A0B52A1500C500F8668D /* MessageListView.swift */; };
 		DC32A0B82A15010400F8668D /* ChatSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32A0B72A15010400F8668D /* ChatSettingsView.swift */; };
 		DC3E09F42A1E1BA000FC3D46 /* ChadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E09F32A1E1BA000FC3D46 /* ChadModel.swift */; };
 		DC437FC12A14F05C00108D4A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC437FC02A14F05C00108D4A /* ChatView.swift */; };
@@ -39,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4526866C2A35F17E00848F59 /* ChatData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChatData.xcdatamodel; sourceTree = "<group>"; };
+		4526866E2A35F21500848F59 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		DC32A0B52A1500C500F8668D /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 		DC32A0B72A15010400F8668D /* ChatSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSettingsView.swift; sourceTree = "<group>"; };
 		DC3E09F32A1E1BA000FC3D46 /* ChadModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChadModel.swift; path = ChadGPT/API/ChadModel.swift; sourceTree = SOURCE_ROOT; };
 		DC437FC02A14F05C00108D4A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -81,6 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4526866A2A35F16300848F59 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				4526866B2A35F17E00848F59 /* ChatData.xcdatamodeld */,
+				4526866E2A35F21500848F59 /* DataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		DC32A0B42A1500BC00F8668D /* components */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +136,7 @@
 		DCB28CB12A14E4FB0043B01E /* ChadGPT */ = {
 			isa = PBXGroup;
 			children = (
+				4526866A2A35F16300848F59 /* CoreData */,
 				DC3E09F62A1E1BCE00FC3D46 /* API */,
 				DC32A0B42A1500BC00F8668D /* components */,
 				DCB28CB22A14E4FB0043B01E /* ChadGPTApp.swift */,
@@ -295,6 +311,8 @@
 				DCB28CB32A14E4FB0043B01E /* ChadGPTApp.swift in Sources */,
 				DC8B1D042A39AFA9008C9006 /* MessageView.swift in Sources */,
 				DC32A0B82A15010400F8668D /* ChatSettingsView.swift in Sources */,
+				4526866F2A35F21500848F59 /* DataManager.swift in Sources */,
+				4526866D2A35F17E00848F59 /* ChatData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +637,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4526866B2A35F17E00848F59 /* ChatData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4526866C2A35F17E00848F59 /* ChatData.xcdatamodel */,
+			);
+			currentVersion = 4526866C2A35F17E00848F59 /* ChatData.xcdatamodel */;
+			path = ChatData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DCB28CA72A14E4FB0043B01E /* Project object */;
 }

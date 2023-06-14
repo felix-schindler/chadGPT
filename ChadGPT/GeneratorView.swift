@@ -21,10 +21,13 @@ struct GeneratorView: View {
                     Button("Generate") {
                         lines = nil
                         // TODO: Add API call
-                        lines = [
+                        Task {
+                            await generatePickUpLine()
+                        }
+                        /*lines = [
                             "Excuse me, are you a dictionary? Because you add meaning to my otherwise dumm life.",
                             "Are you a math equation? Because you're the missing variable in my dumm love life."
-                        ]
+                        ]*/
                     }
                 }
                 
@@ -50,6 +53,16 @@ struct GeneratorView: View {
                 }
             }.navigationTitle("Generator")
         }
+    }
+    
+    func generatePickUpLine() async {
+        do {
+               let res = try await ChadModel.shared.makeAPIRequest(systemMessage: ChadModel.PICKUPLINE, prompt: self.userInput)
+               lines = res.choices.map { $0.message.content }
+           } catch {
+               // Handle API call error
+               print("API call error: \(error)")
+           }
     }
 }
 

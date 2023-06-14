@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ChatView: View {
     @State var name = ChadModel.shared.settings.name
@@ -15,6 +16,12 @@ struct ChatView: View {
     @State var msg = ""
     
     @State var showSettings = false
+    
+    @ObservedObject var dataManager = DataManager.shared
+    
+    func loadChatHistory() {
+        messages = dataManager.loadChatHistory().map { Message(role: $0.role ?? "", content: $0.message ?? "") }
+    }
     
     var body: some View {
         NavigationView {
@@ -50,19 +57,21 @@ struct ChatView: View {
                 HStack {
                     TextField("Message", text: $msg)
                         .textFieldStyle(.roundedBorder)
-                    if (loading) {
-                        ProgressView()
-                    } else {
-                        Button(action: {
-                            if (!msg.isEmpty) {
-                                Task {
-                                    loading = true
+                        .scrollDismissesKeyboard(.immediately)
+                    Button(action: {
+                        if (!msg.isEmpty) {
+                            Task {
                                 do {
-                                    let msg = self.msg; self.msg = ""
-                                    self.messages.append(Message(role: "user", content: msg))
-                                    let res  = try await ChadModel.shared.makeAPIRequest(msg)
-                                    let msgs = res.choices.map { $0.message }
-                                    let _    = msgs.map { self.messages.append($0) }
+                                    let sentMessage = Message(role: "user", content: msg)
+                                    messages.append(sentMessage)
+                                    dataManager.saveChatHistory(role: sentMessage.role, message: sentMessage.content)
+                                    let systemMessage =  ChadModel.shared.setCharacterPrompt(name: self.name)
+                                    let res  = try await ChadModel.shared.makeAPIRequest(systemMessage: systemMessage, prompt: msg)
+                                    print(systemMessage)
+                                    let systemMessages = res.choices.map { Message(role: "system", content: $0.message.content) }
+                                    messages.append(contentsOf: systemMessages)
+                                    systemMessages.forEach { dataManager.saveChatHistory(role: $0.role, message: $0.content) }
+                                    msg = ""
                                 } catch {
                                     print("[ERROR] Failed to send message", error)
                                 }
