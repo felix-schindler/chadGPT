@@ -27,7 +27,7 @@ struct MessageView: View {
             } else {
                 Text(msg.content)
                     .padding(7.5)
-                    .background(Color(.systemGray4))
+                    .background(Color(.systemGray5))
                     .cornerRadius(10)
                     .textSelection(.enabled)
                 Spacer()
