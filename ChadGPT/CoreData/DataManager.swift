@@ -94,6 +94,7 @@ class DataManager: ObservableObject {
     func deleteItem(withContent content: String) {
         let fetchRequest: NSFetchRequest<PickupLine> = PickupLine.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "content == %@", content)
+        fetchRequest.fetchLimit(1)
         
         do {
             let items = try viewContext.fetch(fetchRequest)
