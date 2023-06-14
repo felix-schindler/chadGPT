@@ -49,8 +49,8 @@ struct GeneratorView: View {
                         }
                     }.transition(.slide) // FIXME: This somehow doesn't works
                 }
-            }
-        }.navigationTitle("Generator")
+            }.navigationTitle("Generator")
+        }
     }
     
     private func generatePickUpLine() async -> Void {
