@@ -28,9 +28,9 @@ struct ChatSettingsView: View {
                         TextField("Name", text: $name)
                     }
                     Picker("Personality", selection: $personality) {
-                        Text("Cute").tag(ChadStyle.cute)
-                        Text("Sophisticated").tag(ChadStyle.sophisticated)
-                        Text("Tsundere").tag(ChadStyle.tsundere)
+                        ForEach(ChadStyle.allCases, id: \.self) { style in
+                            Text(style.rawValue).tag(style)
+                        }
                     }
                 }
             }.toolbar {
