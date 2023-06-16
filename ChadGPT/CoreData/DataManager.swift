@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import os
 
 class DataManager: ObservableObject {
     
@@ -19,7 +20,7 @@ class DataManager: ObservableObject {
         let container = NSPersistentContainer(name: "ChatData")
         container.loadPersistentStores { _, error in
             if let error = error {
-                fatalError("Failed to load persistent stores: \(error)")
+                logger.error("Failed to load persistent stores: \(error)")
             }
         }
         return container
@@ -30,16 +31,16 @@ class DataManager: ObservableObject {
     }
     
     public func saveChatHistory(role: String, message: String) {
-        print("Saving chat history: role=\(role), message=\(message)")
+        //print("Saving chat history: role=\(role), message=\(message)")
         let newChatHistory = ChatHistory(context: viewContext)
         newChatHistory.role = role
         newChatHistory.message = message
         
         do {
             try viewContext.save()
-            print("Added new message successfully")
+            logger.info("Saved Chat History")
         } catch {
-            print("Failed to add chat history: \(error)")
+            logger.error("Failed to add chat history: \(error)")
         }
     }
     
@@ -49,9 +50,9 @@ class DataManager: ObservableObject {
         
         do {
             try viewContext.execute(deleteRequest)
-            print("Chat history cleared successfully")
+            logger.info("Chat history cleared successfully")
         } catch {
-            print("Failed to clear chat history: \(error)")
+            logger.error("Failed to clear chat history: \(error)")
         }
     }
     
@@ -61,7 +62,7 @@ class DataManager: ObservableObject {
             let result = try viewContext.fetch(request)
             return result
         } catch {
-            print("Loading Chat History failed: \(error)")
+            logger.error("Loading Chat History failed: \(error)")
         }
         
         return []
@@ -74,9 +75,9 @@ class DataManager: ObservableObject {
         
         do {
             try viewContext.save()
-            print("Pickup line saved")
+            logger.info("Pickup line saved")
         } catch {
-            print("Failed to save pickup line: \(error)")
+            logger.error("Failed to save pickup line: \(error)")
         }
     }
     
@@ -86,7 +87,7 @@ class DataManager: ObservableObject {
             let result = try viewContext.fetch(request)
             return result
         } catch {
-            print("Failed to load pickuplines: \(error)")
+            logger.error("Failed to load pickuplines: \(error)")
         }
         return []
     }
@@ -101,12 +102,12 @@ class DataManager: ObservableObject {
             
             for item in items {
                 viewContext.delete(item)
-                print("deleting line: \(String(describing: item.content))")
+                logger.info("deleting line: \(String(describing: item.content))")
             }
             
             try viewContext.save()
         } catch {
-            print("Error deleting item: \(error)")
+            logger.error("Error deleting item: \(error)")
         }
     }
 }
