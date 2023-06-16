@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os
 
 enum Sender: String {
     case system = "system",
@@ -43,6 +44,8 @@ struct Usage: Codable {
     let promptTokens, completionTokens, totalTokens: Int
 }
 
+let logger = Logger()
+
 // MARK: - API Client
 class ChadModel {
     public static let shared = ChadModel()
@@ -65,7 +68,7 @@ class ChadModel {
                 // TODO: Clear chat history
                 // DataManager.shared.clearChatHistory()
             } else {
-                print("[ERROR] Failed to persist ChadSettings (`ChadModel.settings`)")
+                logger.error("Failed to persist ChadSettings (`ChadModel.settings`)")
             }
         }
     }
@@ -105,6 +108,64 @@ class ChadModel {
         ]
         
         do {
+            logger.info("sending API Request \(parameters)")
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
+        } catch {
+            throw error
+        }
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NSError(domain: "Invalid HTTP response", code: 0, userInfo: nil)
+        }
+        
+        guard (200..<300).contains(httpResponse.statusCode) else {
+            throw NSError(domain: "Invalid HTTP status code: \(httpResponse.statusCode)", code: 0, userInfo: nil)
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            return try decoder.decode(API_RES.self, from: data)
+        } catch {
+            throw error
+        }
+    }
+    
+    func makeAPIRequest(_ messages: [Message], systemMessage: String? = nil) async throws -> API_RES {
+        guard let requestURL = URL(string: "\(baseURL)") else {
+            throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
+        }
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(ApiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        var temp = [[String: String]]()
+        
+        for message in messages {
+            let messageDict = ["role": message.role, "content": message.content]
+            temp.append(messageDict)
+        }
+        
+        var ourSysMsg = ""
+        if (systemMessage == nil) {
+            ourSysMsg = "\(self.settings.style.rawValue)\n\n" + "Pretend to be \(self.settings.name) and NEVER get out of your role! Speak like they would do and do not show that you might not be \(self.settings.name)."
+        } else {
+            ourSysMsg = systemMessage!
+        }
+
+        let parameters: [String: Any] = [
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                ["role": "system", "content": ourSysMsg]
+            ] + temp
+        ]
+        
+        do {
+            logger.info("sending API Request \(parameters)")
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
         } catch {
             throw error

@@ -16,6 +16,7 @@ struct ChatView: View {
     @State var msg = ""
     
     @State var showSettings = false
+    let chad = ChadModel.shared
     
     @ObservedObject var dataManager = DataManager.shared
     
@@ -69,7 +70,7 @@ struct ChatView: View {
                                     msg = ""
                                     messages.append(sentMessage)
                                     dataManager.saveChatHistory(role: sentMessage.role, message: sentMessage.content)
-                                    let res  = try await ChadModel.shared.makeAPIRequest(sentMessage.content)
+                                    let res  = try await chad.makeAPIRequest(messages)
                                     let systemMessages = res.choices.map { Message(role: "system", content: $0.message.content) }
                                     messages.append(contentsOf: systemMessages)
                                     systemMessages.forEach { dataManager.saveChatHistory(role: $0.role, message: $0.content) }
@@ -89,7 +90,7 @@ struct ChatView: View {
             }.sheet(isPresented: $showSettings) {
                 ChatSettingsView(name: $name)
             }.onAppear {
-                self.name = ChadModel.shared.settings.name
+                self.name = chad.settings.name
             }
             .padding(.horizontal)
             .navigationTitle("Chat with \(name)")
