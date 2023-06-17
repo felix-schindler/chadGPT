@@ -87,7 +87,9 @@ struct ChatView: View {
                 Button(action: { showSettings = true }, label: {
                     Label("Settings", systemImage: "gearshape")
                 })
-            }.sheet(isPresented: $showSettings) {
+            }.sheet(isPresented: $showSettings, onDismiss: {
+                name = ChadModel.shared.settings.name
+            }) {
                 ChatSettingsView(name: $name)
             }.onAppear {
                 self.name = chad.settings.name
