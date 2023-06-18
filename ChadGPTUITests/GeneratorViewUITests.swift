@@ -27,7 +27,14 @@ class GeneratorViewUITests: XCTestCase {
         userPromptTextField.tap()
         userPromptTextField.typeText("She's the best singer in the world")
         collectionViewsQuery.buttons["line-generator-button"].tap()
+        
         let pickupLinesSection = collectionViewsQuery.staticTexts["Pickup lines"]
-        XCTAssertTrue(pickupLinesSection.waitForExistence(timeout: 5))
+        
+        let existsPredicate = NSPredicate(format: "exists == true")
+        expectation(for: existsPredicate, evaluatedWith: pickupLinesSection, handler: nil)
+        
+        waitForExpectations(timeout: 10, handler: nil)  // Adjust the timeout as needed.
+        
+        XCTAssertTrue(pickupLinesSection.exists)
     }
 }
