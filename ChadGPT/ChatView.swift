@@ -43,17 +43,18 @@ struct ChatView: View {
                                 MessageView(message)
                             }
                         }/*.onChange(of: messages) { _ in
-                            // FIXME: This doesn't work right now
-                            // Scroll to the bottom when messages change
-                            withAnimation {
-                                scrollView.scrollTo(messages.count - 1, anchor: .bottom)
-                            }
-                        }*/.scrollDismissesKeyboard(.interactively)
+                          // FIXME: This doesn't work right now
+                          // Scroll to the bottom when messages change
+                          withAnimation {
+                          scrollView.scrollTo(messages.count - 1, anchor: .bottom)
+                          }
+                          }*/.scrollDismissesKeyboard(.interactively)
                     }
                 }
                 Spacer()
                 HStack {
                     TextField("Message", text: $msg)
+                        .accessibilityIdentifier("user-msg")
                         .textFieldStyle(.roundedBorder)
                     if (loading) {
                         Spacer()
@@ -70,15 +71,15 @@ struct ChatView: View {
                                 messages.append(contentsOf: systemMessages)
                                 systemMessages.forEach { dataManager.saveChatHistory(role: $0.role, message: $0.content) }
                             }
-                        }
-                        .buttonStyle(.bordered)
-                        .clipShape(Circle())
+                        }.accessibilityIdentifier("send-msg")
+                            .buttonStyle(.bordered)
+                            .clipShape(Circle())
                     }
                 }.padding(.bottom, 5)
             }.toolbar {
                 Button(action: { showSettings = true }, label: {
                     Label("Settings", systemImage: "gearshape")
-                })
+                }).accessibilityIdentifier("open-settings")
             }.sheet(isPresented: $showSettings, onDismiss: {
                 name = ChadModel.shared.settings.name
             }) {

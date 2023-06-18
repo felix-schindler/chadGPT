@@ -21,40 +21,41 @@ struct GeneratorView: View {
             List {
                 Section {
                     TextField("She's a 10 but...", text: $userInput)
+                        .accessibilityIdentifier("user-prompt")
                     AsyncButton("Generate") {
-                        await lines = helper.generatePickUpLine(userInput: self.userInput)
-                    }
-                }
-                
-                if (lines.isNotEmpty) {
-                    Section("Pickup lines") {
-                        ForEach(lines, id: \.self) { line in
-                            Text(line)
-                                .swipeActions {
-                                    Button(
-                                        role: .destructive,
-                                        action: {
-                                            // TODO: Remove from lines array
-                                            if let index = lines.firstIndex(of: line) {
-                                                lines.remove(at: index)
+                        lines = await helper.generatePickUpLine(userInput: self.userInput)
+                    }.accessibilityIdentifier("line-generator-button")
+                    
+                    if (lines.isNotEmpty) {
+                        Section("Pickup lines") {
+                            ForEach(lines, id: \.self) { line in
+                                Text(line)
+                                    .swipeActions {
+                                        Button(
+                                            role: .destructive,
+                                            action: {
+                                                // TODO: Remove from lines array
+                                                if let index = lines.firstIndex(of: line) {
+                                                    lines.remove(at: index)
+                                                }
+                                            },
+                                            label: {
+                                                Label("Remove", systemImage: "trash")
                                             }
-                                        },
-                                        label: {
-                                            Label("Remove", systemImage: "trash")
-                                        }
-                                    ).tint(.red)
-                                }.swipeActions(edge: .leading) {
-                                    Button(action: {
-                                        dataManager.savePickUpLine(line: line)
-                                    }, label: {
-                                        Label("Add to starred", systemImage: "star")
-                                    }).tint(.yellow)
-                                }.textSelection(.enabled)
-                        }
-                    }.transition(.slide) // FIXME: This somehow doesn't works
-                }
-            }.navigationTitle("Generator")
-                .scrollDismissesKeyboard(.interactively)
+                                        ).tint(.red)
+                                    }.swipeActions(edge: .leading) {
+                                        Button(action: {
+                                            dataManager.savePickUpLine(line: line)
+                                        }, label: {
+                                            Label("Add to starred", systemImage: "star")
+                                        }).tint(.yellow)
+                                    }.textSelection(.enabled)
+                            }
+                        }.transition(.slide) // FIXME: This somehow doesn't works
+                    }
+                }.navigationTitle("Generator")
+                    .scrollDismissesKeyboard(.interactively)
+            }
         }
     }
 }
