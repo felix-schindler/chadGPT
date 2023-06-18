@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct MessageView: View {
-    @State var msg: Message
+    @State var message: Message
     
     init(_ message: Message) {
-        self.msg = message
+        self.message = message
     }
     
     var body: some View {
         HStack {
-            if (msg.role == "user") {
+            if (message.role == "user") {
                 Spacer()
-                Text(msg.content)
+                Text(message.content)
                     .padding(7.5)
                     .background(Color.accentColor)
                     .foregroundStyle(.white)
                     .cornerRadius(10)
                     .textSelection(.enabled)
             } else {
-                Text(msg.content)
+                Text(message.content)
                     .padding(7.5)
                     .background(Color(.systemGray5))
                     .cornerRadius(10)
