@@ -18,7 +18,6 @@ class GeneratorViewUITests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
-        // Räume nach jedem Test auf, wenn nötig
     }
     
     func testGenerate() {

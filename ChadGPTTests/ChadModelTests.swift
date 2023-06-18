@@ -23,9 +23,9 @@ final class ChadModelTests: XCTestCase {
     }
     
     func testMakeAPIRequest() async throws {
-        let userMsg = "Hello, Chad!"
-        let apiRes = try await chadModel.makeAPIRequest(userMsg)
-        XCTAssertNotNil(apiRes)
+        let userMsg = [Message(role: "user", content: "Hello, Chad!")]
+        let apiRes = await chadModel.sendMessage(userMsg)
+        XCTAssertTrue(apiRes.isNotEmpty)
     }
     
     func testSettings() async {
