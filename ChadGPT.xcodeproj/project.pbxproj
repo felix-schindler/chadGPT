@@ -23,6 +23,8 @@
 		DCB28CC42A14E4FD0043B01E /* ChadGPTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28CC32A14E4FD0043B01E /* ChadGPTTests.swift */; };
 		DCB28CCE2A14E4FD0043B01E /* ChadGPTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28CCD2A14E4FD0043B01E /* ChadGPTUITests.swift */; };
 		DCB28CD02A14E4FD0043B01E /* ChadGPTUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB28CCF2A14E4FD0043B01E /* ChadGPTUITestsLaunchTests.swift */; };
+		DCDD31C62A3B9DC50019701D /* ChatViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD31C52A3B9DC50019701D /* ChatViewUITests.swift */; };
+		DCDD31C82A3B9FB20019701D /* GeneratorViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDD31C72A3B9FB20019701D /* GeneratorViewUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		DCB28CC92A14E4FD0043B01E /* ChadGPTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChadGPTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB28CCD2A14E4FD0043B01E /* ChadGPTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChadGPTUITests.swift; sourceTree = "<group>"; };
 		DCB28CCF2A14E4FD0043B01E /* ChadGPTUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChadGPTUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DCDD31C52A3B9DC50019701D /* ChatViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewUITests.swift; sourceTree = "<group>"; };
+		DCDD31C72A3B9FB20019701D /* GeneratorViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorViewUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,8 @@
 			children = (
 				DCB28CCD2A14E4FD0043B01E /* ChadGPTUITests.swift */,
 				DCB28CCF2A14E4FD0043B01E /* ChadGPTUITestsLaunchTests.swift */,
+				DCDD31C52A3B9DC50019701D /* ChatViewUITests.swift */,
+				DCDD31C72A3B9FB20019701D /* GeneratorViewUITests.swift */,
 			);
 			path = ChadGPTUITests;
 			sourceTree = "<group>";
@@ -334,8 +340,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCDD31C82A3B9FB20019701D /* GeneratorViewUITests.swift in Sources */,
 				DCB28CD02A14E4FD0043B01E /* ChadGPTUITestsLaunchTests.swift in Sources */,
 				DCB28CCE2A14E4FD0043B01E /* ChadGPTUITests.swift in Sources */,
+				DCDD31C62A3B9DC50019701D /* ChatViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,7 @@ struct GeneratorView: View {
             List {
                 Section {
                     TextField("She's a 10 but...", text: $userInput)
+                        .accessibilityIdentifier("user-prompt")
                     if (loading) {
                         ProgressView()
                     } else {
@@ -29,7 +30,7 @@ struct GeneratorView: View {
                             Task {
                                 await generatePickUpLine()
                             }
-                        }
+                        }.accessibilityIdentifier("line-generator-button")
                     }
                 }
                 
