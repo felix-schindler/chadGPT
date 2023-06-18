@@ -22,5 +22,12 @@ class GeneratorViewUITests: XCTestCase {
     }
     
     func testGenerate() {
+        let collectionViewsQuery = app.collectionViews
+        let userPromptTextField = collectionViewsQuery.textFields["user-prompt"]
+        userPromptTextField.tap()
+        userPromptTextField.typeText("She's the best singer in the world")
+        collectionViewsQuery.buttons["line-generator-button"].tap()
+        let pickupLinesSection = collectionViewsQuery.staticTexts["Pickup lines"]
+        XCTAssertTrue(pickupLinesSection.waitForExistence(timeout: 5))
     }
 }
