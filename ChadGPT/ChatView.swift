@@ -17,12 +17,9 @@ struct ChatView: View {
     
     @State var showSettings = false
     let chad = ChadModel.shared
+    let helper = ViewHelper()
     
     @ObservedObject var dataManager = DataManager.shared
-    
-    func loadChatHistory() -> Void {
-        messages = dataManager.loadChatHistory().map { Message(role: $0.role ?? "", content: $0.message ?? "") }
-    }
     
     var body: some View {
         NavigationView {
@@ -45,13 +42,13 @@ struct ChatView: View {
                             ForEach(messages, id: \.self) { message in
                                 MessageView(message)
                             }
-                        }.onChange(of: messages) { _ in
+                        }/*.onChange(of: messages) { _ in
                             // FIXME: This doesn't work right now
                             // Scroll to the bottom when messages change
                             withAnimation {
                                 scrollView.scrollTo(messages.count - 1, anchor: .bottom)
                             }
-                        }.scrollDismissesKeyboard(.interactively)
+                        }*/.scrollDismissesKeyboard(.interactively)
                     }
                 }
                 Spacer()
@@ -65,18 +62,13 @@ struct ChatView: View {
                     } else {
                         AsyncButton(systemImage: "paperplane") {
                             if (msg.isNotEmpty) {
-                                do {
-                                    let sentMessage = Message(role: "user", content: msg)
-                                    msg = ""
-                                    messages.append(sentMessage)
-                                    dataManager.saveChatHistory(role: sentMessage.role, message: sentMessage.content)
-                                    let res  = try await chad.makeAPIRequest(messages)
-                                    let systemMessages = res.choices.map { Message(role: "system", content: $0.message.content) }
-                                    messages.append(contentsOf: systemMessages)
-                                    systemMessages.forEach { dataManager.saveChatHistory(role: $0.role, message: $0.content) }
-                                } catch {
-                                    print("[ERROR] Failed to send message", error)
-                                }
+                                let sentMessage = Message(role: "user", content: msg)
+                                msg = ""
+                                messages.append(sentMessage)
+                                dataManager.saveChatHistory(role: sentMessage.role, message: sentMessage.content)
+                                let systemMessages = await chad.sendMessage(messages)
+                                messages.append(contentsOf: systemMessages)
+                                systemMessages.forEach { dataManager.saveChatHistory(role: $0.role, message: $0.content) }
                             }
                         }
                         .buttonStyle(.bordered)
@@ -90,10 +82,12 @@ struct ChatView: View {
             }.sheet(isPresented: $showSettings, onDismiss: {
                 name = ChadModel.shared.settings.name
             }) {
-                ChatSettingsView(callback: loadChatHistory, name: $name)
+                ChatSettingsView(callback: {
+                    messages = helper.loadChatHistory()
+                } , name: $name)
             }.onAppear {
                 self.name = chad.settings.name
-                loadChatHistory()
+                messages = helper.loadChatHistory()
             }
             .padding(.horizontal)
             .navigationTitle("Chat with \(name)")

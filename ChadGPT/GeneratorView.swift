@@ -14,6 +14,7 @@ struct GeneratorView: View {
     @State var lines: [String] = []
     
     @ObservedObject var dataManager = DataManager.shared
+    let helper = ViewHelper()
     
     var body: some View {
         NavigationView {
@@ -21,7 +22,7 @@ struct GeneratorView: View {
                 Section {
                     TextField("She's a 10 but...", text: $userInput)
                     AsyncButton("Generate") {
-                        await generatePickUpLine()
+                        await lines = helper.generatePickUpLine(userInput: self.userInput)
                     }
                 }
                 
@@ -54,16 +55,6 @@ struct GeneratorView: View {
                 }
             }.navigationTitle("Generator")
                 .scrollDismissesKeyboard(.interactively)
-        }
-    }
-    
-    private func generatePickUpLine() async -> Void {
-        do {
-            let res = try await ChadModel.shared.makeAPIRequest(self.userInput, systemMessage: ChadStyle.flirty.rawValue)
-            res.choices.forEach { lines.insert($0.message.content, at: 0) }
-        } catch {
-            // Handle API call error
-            print("[ERROR] This happened during the API call: \(error)")
         }
     }
 }

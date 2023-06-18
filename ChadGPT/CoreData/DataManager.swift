@@ -20,7 +20,7 @@ class DataManager: ObservableObject {
         let container = NSPersistentContainer(name: "ChatData")
         container.loadPersistentStores { _, error in
             if let error = error {
-                logger.error("Failed to load persistent stores: \(error)")
+                log.error("Failed to load persistent stores: \(error)")
             }
         }
         return container
@@ -31,28 +31,26 @@ class DataManager: ObservableObject {
     }
     
     public func saveChatHistory(role: String, message: String) {
-        logger.info("Saving chat history: role=\(role), message=\(message)")
         let newChatHistory = ChatHistory(context: viewContext)
         newChatHistory.role = role
         newChatHistory.message = message
         
         do {
             try viewContext.save()
-            logger.info("Saved Chat History")
+            log.info("Sucessfully saved chat history: role=\(role), message=\(message)")
         } catch {
-            logger.error("Failed to add chat history: \(error)")
+            log.error("Failed to add chat history: \(error)")
         }
     }
     
     public func clearChatHistory() {
-        print("Clearing chat history")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: ChatHistory.fetchRequest())
         
         do {
             try viewContext.execute(deleteRequest)
-            logger.info("Chat history cleared successfully")
+            log.info("Chat history cleared successfully")
         } catch {
-            logger.error("Failed to clear chat history: \(error)")
+            log.error("Failed to clear chat history: \(error)")
         }
     }
     
@@ -62,22 +60,21 @@ class DataManager: ObservableObject {
             let result = try viewContext.fetch(request)
             return result
         } catch {
-            logger.error("Loading Chat History failed: \(error)")
+            log.error("Loading Chat History failed: \(error)")
         }
         
         return []
     }
     
     func savePickUpLine(line: String) {
-        print("Saving pickup line: \(line)")
         let newPickUpLine = PickupLine(context: viewContext)
         newPickUpLine.content = line
         
         do {
             try viewContext.save()
-            logger.info("Pickup line saved")
+            log.info("Pickup line \(line) saved successfully")
         } catch {
-            logger.error("Failed to save pickup line: \(error)")
+            log.error("Failed to save pickup line: \(error)")
         }
     }
     
@@ -87,7 +84,7 @@ class DataManager: ObservableObject {
             let result = try viewContext.fetch(request)
             return result
         } catch {
-            logger.error("Failed to load pickuplines: \(error)")
+            log.error("Failed to load pickuplines: \(error)")
         }
         return []
     }
@@ -102,12 +99,12 @@ class DataManager: ObservableObject {
             
             for item in items {
                 viewContext.delete(item)
-                logger.info("deleting line: \(String(describing: item.content))")
+                log.info("deleting line: \(String(describing: item.content))")
             }
             
             try viewContext.save()
         } catch {
-            logger.error("Error deleting item: \(error)")
+            log.error("Error deleting item: \(error)")
         }
     }
 }

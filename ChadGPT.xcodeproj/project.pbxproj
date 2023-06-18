@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4526866D2A35F17E00848F59 /* ChatData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4526866B2A35F17E00848F59 /* ChatData.xcdatamodeld */; };
 		4526866F2A35F21500848F59 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4526866E2A35F21500848F59 /* DataManager.swift */; };
+		453B5C732A3F346D0007F138 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B5C722A3F346D0007F138 /* ViewHelper.swift */; };
+		DC1E22832A3EF27B00404E8E /* ChadSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E22822A3EF27B00404E8E /* ChadSettings.swift */; };
+		DC1E22852A3EF34D00404E8E /* OpenApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1E22842A3EF34D00404E8E /* OpenApi.swift */; };
 		DC32A0B82A15010400F8668D /* ChatSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32A0B72A15010400F8668D /* ChatSettingsView.swift */; };
 		DC3E09F42A1E1BA000FC3D46 /* ChadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E09F32A1E1BA000FC3D46 /* ChadModel.swift */; };
 		DC437FC12A14F05C00108D4A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC437FC02A14F05C00108D4A /* ChatView.swift */; };
@@ -47,6 +50,9 @@
 /* Begin PBXFileReference section */
 		4526866C2A35F17E00848F59 /* ChatData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChatData.xcdatamodel; sourceTree = "<group>"; };
 		4526866E2A35F21500848F59 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		453B5C722A3F346D0007F138 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		DC1E22822A3EF27B00404E8E /* ChadSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChadSettings.swift; sourceTree = "<group>"; };
+		DC1E22842A3EF34D00404E8E /* OpenApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenApi.swift; sourceTree = "<group>"; };
 		DC32A0B72A15010400F8668D /* ChatSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSettingsView.swift; sourceTree = "<group>"; };
 		DC3E09F32A1E1BA000FC3D46 /* ChadModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChadModel.swift; path = ChadGPT/API/ChadModel.swift; sourceTree = SOURCE_ROOT; };
 		DC437FC02A14F05C00108D4A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -115,6 +121,8 @@
 		DC3E09F62A1E1BCE00FC3D46 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				DC1E22842A3EF34D00404E8E /* OpenApi.swift */,
+				DC1E22822A3EF27B00404E8E /* ChadSettings.swift */,
 				DC3E09F32A1E1BA000FC3D46 /* ChadModel.swift */,
 			);
 			path = API;
@@ -153,6 +161,7 @@
 				DCB28CB62A14E4FD0043B01E /* Assets.xcassets */,
 				DCB28CB82A14E4FD0043B01E /* Preview Content */,
 				DC74FA942A3B9293004A8775 /* Utils.swift */,
+				453B5C722A3F346D0007F138 /* ViewHelper.swift */,
 			);
 			path = ChadGPT;
 			sourceTree = "<group>";
@@ -320,7 +329,10 @@
 				DC3E09F42A1E1BA000FC3D46 /* ChadModel.swift in Sources */,
 				DCB28CB32A14E4FB0043B01E /* ChadGPTApp.swift in Sources */,
 				DC8B1D042A39AFA9008C9006 /* MessageView.swift in Sources */,
+				453B5C732A3F346D0007F138 /* ViewHelper.swift in Sources */,
+				DC1E22832A3EF27B00404E8E /* ChadSettings.swift in Sources */,
 				DC74FA932A3B900D004A8775 /* AsyncButton.swift in Sources */,
+				DC1E22852A3EF34D00404E8E /* OpenApi.swift in Sources */,
 				DC74FA952A3B9293004A8775 /* Utils.swift in Sources */,
 				DC32A0B82A15010400F8668D /* ChatSettingsView.swift in Sources */,
 				4526866F2A35F21500848F59 /* DataManager.swift in Sources */,

@@ -8,50 +8,15 @@
 import Foundation
 import os
 
-enum Sender: String {
-    case system = "system",
-         bot = "assistant",
-         human = "user"
-}
 
-// MARK: - API responses
-struct API_RES: Codable {
-    let id: String
-    let object: String
-    let created: Int
-    let model: String
-    let usage: Usage
-    let choices: [Choice]
-}
-
-struct Choice: Codable {
-    let message: Message
-    let finishReason: String
-    let index: Int
-}
-
-struct Message: Codable, Equatable, Hashable {
-    var role: String    // "user", "system" ; Need to be var so you can compare using `==` it when using @Binding
-    let content: String
-    
-    
-    static func ==(lhs: Message, rhs: Message) -> Bool {
-        return lhs.role == rhs.role && lhs.content == rhs.content
-    }
-}
-
-struct Usage: Codable {
-    let promptTokens, completionTokens, totalTokens: Int
-}
-
-let logger = Logger()
+let log = Logger()
 
 // MARK: - API Client
 class ChadModel {
-    public static let shared = ChadModel()
+    static let shared = ChadModel()
     
-    private let ApiKey = "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"
-    private let baseURL = URL(string: "https://api.openai.com/v1/chat/completions")!
+    private let apiKey = "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"
+    private let baseUrl = URL(string: "https://api.openai.com/v1/chat/completions")!
     public var settings: ChadSettings {
         get {
             if let data = UserDefaults.standard.data(forKey: "chad_settings") {
@@ -68,7 +33,7 @@ class ChadModel {
                 // TODO: Clear chat history
                 DataManager.shared.clearChatHistory()
             } else {
-                logger.error("Failed to persist ChadSettings (`ChadModel.settings`)")
+                log.error("Failed to persist ChadSettings (`ChadModel.settings`)")
             }
         }
     }
@@ -76,73 +41,39 @@ class ChadModel {
     private init() {
     }
     
-    /// Calculates the sum of two integers.
+    /// Generates pick-up line based on user input
     ///
     /// - Parameters:
     ///   - userMsg: A new prompt / message by the user
     ///
     /// - Returns: The decoded API response
-    func makeAPIRequest(_ userMsg: String, systemMessage: String? = nil) async throws -> API_RES {
-        guard let requestURL = URL(string: "\(baseURL)") else {
-            throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
-        }
-        
-        var request = URLRequest(url: requestURL)
-        request.httpMethod = "POST"
-        request.setValue("Bearer \(ApiKey)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        var ourSysMsg = ""
-        if (systemMessage == nil) {
-            ourSysMsg = "\(self.settings.style.rawValue)\n\n" + "Also, always speak like \(self.settings.name) and NEVER get out of your role!"
-        } else {
-            ourSysMsg = systemMessage!
-        }
+    func generatePickupLines(_ userMessage: String) async -> [String] {
+        let systemMessage: String = ChadStyle.flirty.rawValue
         
         let parameters: [String: Any] = [
             "model": "gpt-3.5-turbo",
             "messages": [
-                ["role": "system", "content": ourSysMsg],
-                ["role": "user", "content": userMsg]
+                ["role": "system", "content": systemMessage],
+                ["role": "user", "content": userMessage]
             ]
         ]
         
-        do {
-            logger.info("sending API Request \(parameters)")
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
-        } catch {
-            throw error
+        if let res = await OpenApi.post(type: ApiResponse.self, url: self.baseUrl, authToken: apiKey, body: parameters) {
+            return res.choices.map { $0.message.content }
         }
-        
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw NSError(domain: "Invalid HTTP response", code: 0, userInfo: nil)
-        }
-        
-        guard (200..<300).contains(httpResponse.statusCode) else {
-            throw NSError(domain: "Invalid HTTP status code: \(httpResponse.statusCode)", code: 0, userInfo: nil)
-        }
-        
-        do {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            return try decoder.decode(API_RES.self, from: data)
-        } catch {
-            throw error
-        }
+
+        return []
     }
     
-    func makeAPIRequest(_ messages: [Message], systemMessage: String? = nil) async throws -> API_RES {
-        guard let requestURL = URL(string: "\(baseURL)") else {
-            throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
-        }
-        
-        var request = URLRequest(url: requestURL)
-        request.httpMethod = "POST"
-        request.setValue("Bearer \(ApiKey)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
+    /// Sends chat messages to API
+    ///
+    /// - Parameters:
+    ///     - messages: all messages within the chat
+    ///     - systemMessage: defines message content
+    ///
+    ///  - Returns: Messages from API Response
+    ///
+    func sendMessage(_ messages: [Message], systemMessage: String? = nil) async -> [Message] {
         var temp = [[String: String]]()
         
         for message in messages {
@@ -156,7 +87,7 @@ class ChadModel {
         } else {
             ourSysMsg = systemMessage!
         }
-
+        
         let parameters: [String: Any] = [
             "model": "gpt-3.5-turbo",
             "messages": [
@@ -164,44 +95,10 @@ class ChadModel {
             ] + temp
         ]
         
-        do {
-            logger.info("sending API Request \(parameters)")
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
-        } catch {
-            throw error
+        if let res = await OpenApi.post(type: ApiResponse.self, url: self.baseUrl, authToken: apiKey, body: parameters) {
+            return res.choices.map { Message(role: "system", content: $0.message.content) }
         }
         
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw NSError(domain: "Invalid HTTP response", code: 0, userInfo: nil)
-        }
-        
-        guard (200..<300).contains(httpResponse.statusCode) else {
-            throw NSError(domain: "Invalid HTTP status code: \(httpResponse.statusCode)", code: 0, userInfo: nil)
-        }
-        
-        do {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            return try decoder.decode(API_RES.self, from: data)
-        } catch {
-            throw error
-        }
+        return []
     }
-}
-
-
-// MARK: - Settings
-enum ChadStyle: String, Codable, CaseIterable {
-    case cute = "1. Speak in uwu text.\n2. Always talk extremly cutely\n3. Replace all r's with w's to sound even cuter.\n4. End every sentence with a cute action.",
-         sophisticated = "1. Speak extemely sophisticated\n2. Be mentually mature\n3. End every sentence with this Emoji: '🧐'",
-         tsundere = "1. Speak like a tsundere",
-         flirty = "1. Help the user get a partner\n2. You may only answer with a single pickup line\n3. You may use puns",
-         normal = ""
-}
-
-struct ChadSettings: Codable {
-    let style: ChadStyle
-    let name: String
 }

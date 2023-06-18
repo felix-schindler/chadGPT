@@ -10,6 +10,7 @@ import SwiftUI
 struct StarredView: View {
     @State var starred: [String] = []
     @ObservedObject var dataManager = DataManager.shared
+    let helper = ViewHelper()
     
     var body: some View {
         NavigationView {
@@ -33,7 +34,7 @@ struct StarredView: View {
                         .swipeActions {
                             Button(role: .destructive, action: {
                                 dataManager.deleteItem(withContent: line)
-                                reloadStarredList()
+                                starred = helper.reloadStarredList()
                             }, label: {
                                 Label("Remove starred", systemImage: "star.slash")
                             })
@@ -41,14 +42,7 @@ struct StarredView: View {
                 }.navigationTitle("Starred")
             }
         }.onAppear {
-            reloadStarredList()
-        }
-    }
-    
-    func reloadStarredList() {
-        starred = []
-        for line in dataManager.loadPickUpLines() {
-            starred.append(line.content ?? "")
+            starred = helper.reloadStarredList()
         }
     }
 }
