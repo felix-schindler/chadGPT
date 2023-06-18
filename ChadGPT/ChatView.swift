@@ -10,7 +10,7 @@ import CoreData
 
 struct ChatView: View {
     @State var name = ChadModel.shared.settings.name
-    @State var messages: [Message] = [] // TODO: Load old messages / history (?)
+    @State var messages: [Message] = []
     
     @State var loading = false
     @State var msg = ""
@@ -20,7 +20,7 @@ struct ChatView: View {
     
     @ObservedObject var dataManager = DataManager.shared
     
-    func loadChatHistory() {
+    func loadChatHistory() -> Void {
         messages = dataManager.loadChatHistory().map { Message(role: $0.role ?? "", content: $0.message ?? "") }
     }
     
@@ -88,9 +88,10 @@ struct ChatView: View {
                     Label("Settings", systemImage: "gearshape")
                 })
             }.sheet(isPresented: $showSettings) {
-                ChatSettingsView(name: $name)
+                ChatSettingsView(callback: loadChatHistory, name: $name)
             }.onAppear {
                 self.name = chad.settings.name
+                loadChatHistory()
             }
             .padding(.horizontal)
             .navigationTitle("Chat with \(name)")

@@ -31,7 +31,7 @@ class DataManager: ObservableObject {
     }
     
     public func saveChatHistory(role: String, message: String) {
-        //print("Saving chat history: role=\(role), message=\(message)")
+        logger.info("Saving chat history: role=\(role), message=\(message)")
         let newChatHistory = ChatHistory(context: viewContext)
         newChatHistory.role = role
         newChatHistory.message = message
