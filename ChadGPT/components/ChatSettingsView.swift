@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatSettingsView: View {
     @Environment(\.presentationMode)
     private var presentationMode: Binding<PresentationMode>
+    let chad = ChadModel.shared
     
     var callback: () -> Void
     @Binding var name: String
@@ -46,8 +47,11 @@ struct ChatSettingsView: View {
                     }
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         Button(action: {
-                            ChadModel.shared.settings = ChadSettings(style: personality, name: name)
-                            callback()
+                            let settingsChanged = chad.settings.name != name || chad.settings.style != personality
+                            if(settingsChanged) {
+                                chad.settings = ChadSettings(style: personality, name: name)
+                                callback()
+                            }
                             self.dismiss()
                         }, label: {
                             Label("Save", systemImage: "checkmark.circle")
