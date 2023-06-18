@@ -61,8 +61,10 @@ struct ChatSettingsView: View {
     
     
     struct ChatSettingsView_Previews: PreviewProvider {
+        var messages: [Message] = []
         static var previews: some View {
-            ChatSettingsView(callback: DataManager.shared.clearChatHistory ,name: .constant("Cardi B"), personality: .cute)
+            ChatSettingsView(callback: {
+                }, name: .constant("Cardi B"), personality: .cute)
         }
     }
 }
