@@ -22,10 +22,13 @@ final class ChadModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testMakeAPIRequest() async throws {
-        let userMsg = "Hello, Chad!"
-        let apiRes = try await chadModel.makeAPIRequest(userMsg)
-        XCTAssertNotNil(apiRes)
+    func testSendMessage() async throws {
+        let messages : [Message] = [
+        Message(role: "user", content: "Hi"),
+        Message(role: "system", content: "Hello")
+        ]
+        let apiRes = await chadModel.sendMessage(messages)
+        XCTAssertTrue(apiRes.isNotEmpty)
     }
     
     func testSettings() async {

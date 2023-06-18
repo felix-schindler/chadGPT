@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		450138CC2A3F467600AE61F2 /* ViewHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450138CB2A3F467600AE61F2 /* ViewHelperTest.swift */; };
 		4526866D2A35F17E00848F59 /* ChatData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4526866B2A35F17E00848F59 /* ChatData.xcdatamodeld */; };
 		4526866F2A35F21500848F59 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4526866E2A35F21500848F59 /* DataManager.swift */; };
 		453B5C732A3F346D0007F138 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B5C722A3F346D0007F138 /* ViewHelper.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		450138CB2A3F467600AE61F2 /* ViewHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelperTest.swift; sourceTree = "<group>"; };
 		4526866C2A35F17E00848F59 /* ChatData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChatData.xcdatamodel; sourceTree = "<group>"; };
 		4526866E2A35F21500848F59 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		453B5C722A3F346D0007F138 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				DCB28CC32A14E4FD0043B01E /* ChadGPTTests.swift */,
 				DC7949722A39F0ED002CB740 /* ChadModelTests.swift */,
 				DC7949742A39F2B5002CB740 /* DataManagerTests.swift */,
+				450138CB2A3F467600AE61F2 /* ViewHelperTest.swift */,
 			);
 			path = ChadGPTTests;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			files = (
 				DCB28CC42A14E4FD0043B01E /* ChadGPTTests.swift in Sources */,
 				DC7949752A39F2B5002CB740 /* DataManagerTests.swift in Sources */,
+				450138CC2A3F467600AE61F2 /* ViewHelperTest.swift in Sources */,
 				DC7949732A39F0ED002CB740 /* ChadModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
