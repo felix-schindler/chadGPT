@@ -15,7 +15,7 @@ let log = Logger()
 class ChadModel {
     static let shared = ChadModel()
     
-    private let apiKey = "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"
+    private let apiKey = "some key"
     private let baseUrl = URL(string: "https://api.openai.com/v1/chat/completions")!
     public var settings: ChadSettings {
         get {
